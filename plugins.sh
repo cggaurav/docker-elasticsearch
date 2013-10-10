@@ -26,8 +26,14 @@ do
 
 	if [ $i == "paramedic" ]
 	then
-		echo "INSTALLING HAMMER"
+		echo "INSTALLING PARAMEDIC"
 		/opt/elasticsearch/bin/plugin --install karmi/elasticsearch-paramedic
+	fi
+
+	if [ $i == "aws_cloud" ]
+	then
+		echo "INSTALLING AWS CLOUD"
+		/opt/elasticsearch/bin/plugin --install elasticsearch/elasticsearch-cloud-aws/1.15.0
 	fi
 
 done
