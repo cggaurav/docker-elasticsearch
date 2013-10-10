@@ -36,6 +36,12 @@ do
 		/opt/elasticsearch/bin/plugin --install elasticsearch/elasticsearch-cloud-aws/1.15.0
 	fi
 
+	if [ $i == "knapsakc" ]
+	then
+		echo "knapsack"
+		/opt/elasticsearch/bin/plugin --url http://bit.ly/17GFBnY --install knapsack
+	fi
+
 done
 
 /opt/elasticsearch/bin/elasticsearch -f
