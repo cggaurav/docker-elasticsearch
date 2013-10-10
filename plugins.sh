@@ -1,3 +1,4 @@
+#!/bin/bash
 # PLUGINS=${PLUGINS:-bigdesk,head}
 echo "INSTALLING ELASTICSEARCH PLUGINS"
 for i in $(echo $PLUGINS | tr "," "\n")
@@ -28,7 +29,7 @@ do
 		echo "INSTALLING HAMMER"
 		/opt/elasticsearch/bin/plugin --install karmi/elasticsearch-paramedic
 	fi
-	
+
 done
 
 /opt/elasticsearch/bin/elasticsearch -f
