@@ -1,45 +1,34 @@
-#!/bin/bash
-
-
-
-
-PLUGINS=${PLUGINS:-( cggaurav test )}
-
-
-for i in "${PLUGINS[@]}"
+PLUGINS=${PLUGINS:-bigdesk,head}
+echo "INSTALLING ELASTICSEARCH PLUGINS"
+for i in $(echo $PLUGINS | tr "," "\n")
 do
-   echo $i
-   # RUN /opt/elasticsearch/bin/plugin --install mobz/elasticsearch-head
-   # RUN /opt/elasticsearch/bin/plugin --install lukas-vlcek/bigdesk
+	echo $i
+	if [ $i == "bigdesk" ]
+	then
+		echo "INSTALLING BIGDESK"
+		/opt/elasticsearch/bin/plugin --install lukas-vlcek/bigdesk
+	fi
+
+	if [ $i == "head" ]
+	then
+		echo "INSTALLING HEAD"
+		/opt/elasticsearch/bin/plugin --install mobz/elasticsearch-head
+	fi
+
+
+	if [ $i == "hammer" ]
+	then
+		echo "INSTALLING HAMMER"
+		/opt/elasticsearch/bin/plugin --install andrewvc/elastic-hammer
+	fi
+
+
+	if [ $i == "paramedic" ]
+	then
+		echo "INSTALLING HAMMER"
+		/opt/elasticsearch/bin/plugin --install karmi/elasticsearch-paramedic
+	fi
+	
 done
 
-
-# if [ "$ES_HOST" = "127.0.0.1" ] ; then
-#     EMBEDDED="true"
-# fi
-
-# if [ "$CFG" != "" ]; then
-#     wget $CFG -O /opt/logstash.conf --no-check-certificate
-# else
-#     cat << EOF > /opt/logstash.conf
-# input {
-#   syslog {
-#     type => syslog
-#     port => 514
-#   }
-# }
-# output {
-#   stdout { debug => true debug_format => "json"}
-# EOF
-#     if [ "$EMBEDDED" = "true" ]; then
-#         cat << EOF >> /opt/logstash.conf
-#   elasticsearch { embedded => $EMBEDDED }
-# }
-# EOF
-#     else
-#         cat << EOF >> /opt/logstash.conf
-#   elasticsearch { embedded => $EMBEDDED host => "$ES_HOST" port => $ES_PORT }
-# }
-# EOF
-#    fi
-# fi
+/opt/elasticsearch/bin/elasticsearch -f
