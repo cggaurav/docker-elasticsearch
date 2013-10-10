@@ -1,8 +1,8 @@
-PLUGINS=${PLUGINS:-bigdesk,head}
+# PLUGINS=${PLUGINS:-bigdesk,head}
 echo "INSTALLING ELASTICSEARCH PLUGINS"
 for i in $(echo $PLUGINS | tr "," "\n")
 do
-	echo $i
+	# echo $i
 	if [ $i == "bigdesk" ]
 	then
 		echo "INSTALLING BIGDESK"
